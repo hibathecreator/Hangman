@@ -1,23 +1,8 @@
-# Project 2
-# Hiba ALtaf Even 4
-# hangman
-
-
-#I will have a menu that allows the user to choose whether they want to play a two-player game or a game with the computer. They will also have the choice to ask for help instructions and to exit the game. 
-#For a two player game, one player will be able to enter the word and then the other player will get hints to help them guess. They will have a limited number of attempts to get the right answer. At each wrong answer, the hangman figure will be redrawn, and when the figure is complete, the game is over. 
-#For the computer game, the user will choose get a choose a category they want the word to fall under. Also, they will be able to choose the level of difficulty they want for th egame. Otherwise, the game will be in the same format as the previous game.
-#The user will also have access to a help menu and exit option.
-
-#I imported the random library and the audio library.
-#I also imported the lists of words from words.py and the different images of hangan from hangmen.py.
 
 import random
 from words import math, science, geography, history, literature, art
 from hangmen import display_hangman_1, display_hangman_2
 from replit import audio
-
-#this function is run when the user enters 1.
-#It displays information on how to play the game and about the various rules and componenets of the game like hints and difficulty level.
 
 def help():
   print(""" Please enter one of the numbers shown in the menu in order to run the appropriate function. \n
@@ -29,17 +14,9 @@ def help():
   display_menu()
   return
 
-#this function is run when it is called in other functions
-#this function determines if there are any duplicate values in the term that the user has to guess. It then returns the indexes in which the letter was repeated. 
-#takes in a list and a string as a parameter. The list consists of each individual letter in the term the user entered. The string is the guess the user entered.
-
 def duplicates(input_list, repeated_letter):
   return [i for i, letter in enumerate(input_list) if letter == repeated_letter]
 
-#this function is run when it is called in the other functions. 
-#this function carries out most of the functions in the game. It displays the blanks, takes in the user's input, and displays the appropriate hangman in the beginning based on the difficulty the user selected(there are different hangmen based on the difficulty levels). It then takes in the user's input and displays the appropriate hangman by calling on display_hangman(). It then records the number of wrong answers the user gives and displays hints according to the difficulty level, length of the term to be guessed, and number of wrong guesses the user has already given. It also determines the number of tries the user has based on the difficulty level and records the number the use up. Once the user has used up all their guesses or the hint has given them the answer, then they get a user telling them they have lost along with the revealed term. If they guess the correct term because their guesses run out then they get a message declaring them the winner.
-#This function checks all the user's inputs and if they do not meet the criteria, then the user gets an error message and is asked for another input. 
-#the function takes in two parameters, the term the player has to guess along with the level of difficulty they desire.
 def play_game(term, difficulty):
   global board
   board = []
@@ -147,17 +124,10 @@ def play_game(term, difficulty):
           num_reveals -= 1
   return
 
-#this function is called in the play_game function.
-#it displays the values in the list called board in a nice format such that each value is next to eachother with spaces in between.
-
 def display_board():
   for i in board:
     print(i, end = " ")
   return
-
-#this function is run when the user enters 2 and has a human player to play with. 
-#the function allows on of the players to determine the term the other has to guess along with the difficulty level for the game. Once these factors have been determined, it calls play_game() with two parameters, the term and difficulty level.
-#it checks the user's inputs and if they do not meet the necessary criteria, then the user gets an error message and is asked for another input. 
 
 def two_players():
   term = (input('Player 1 please enter 1-3 terms. These will be the term(s) player 2 will guess:  \n ')).lower()  
@@ -175,9 +145,6 @@ def two_players():
   play_game(term,difficulty)
   return
 
-#this function is run when the user enters 3 and wants to play with the computer.
-#the function allows the user to choose which category they want the word from and once they choose a category, it randomly selects a word from the list that corresponds with that category. The function also allows the user to determine the difficulty level they want to play at. Once these factors have been determined, it calls the play_game() function with the term and difficulty level as parameters. 
-#it checks the user's inputs and if they do not meet the necessary criteria, then the user gets an error message and is asked for another input. 
 
 def play_with_comp():
   category_num = input("""Which category would you like a word from:
@@ -224,9 +191,6 @@ def play_with_comp():
   
   return
 
-#this function is run when the user enters 4.
-#this function allows the user to exit the game but gives them the choice to reenter if they enter 1.
-#it checks the user's input and if it does not meet the necessary criteria, then the user gets an error message and is asked for another input. 
 def exit():
   print('Thank you for playing!')
   user_input = input('Enter 1 to reenter the game: ')
@@ -235,10 +199,6 @@ def exit():
   else:
     exit()
   return
-
-#this function is run after each of the previous functions.
-#It displays the menu and asks the user which function they want to run. If the user enters 1, then it runs help(). If the user enters 2, then it runs two_players(). If the user enters 3, then it runs play_with_comp(). If the user enters 4, then it runs exit().
-#it checks the user's input and if it does not meet the necessary criteria, then the user gets an error message and is asked for another input. 
 
 def display_menu():
   print("""
